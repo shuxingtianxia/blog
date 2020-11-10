@@ -64,7 +64,7 @@ export default {
     handleChange(type) {
       const { username, password, password2 } = this.form
       if (type === 'username') {
-        //用户名正则，4到16位（字母，数字，下划线，减号）
+        // 用户名正则，4到16位（字母，数字，下划线，减号）
         const uPattern = /^[a-zA-Z0-9_-]{4,16}$/
         if (!uPattern.test(username)) {
           this.username.isError = true
@@ -74,8 +74,8 @@ export default {
         }
       }
       if (type === 'password') {
-        //密码正则，最少6位，包括至少1字母，1个数字
-        var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z | A-Z]).*$/
+        // 密码正则，最少6位，包括至少1字母，1个数字
+        const pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z | A-Z]).*$/
         if (!pPattern.test(password)) {
           this.password.isError = true
           this.password.text = '最少6位，包括至少1字母，1个数字'
@@ -91,7 +91,7 @@ export default {
           this.password2.isError = false
         }
       }
-      if (this.type === 'login' && !this.username.isError && !this.password.isError || this.type === 'register' && !this.username.isError && !this.password.isError && !this.password2.isError) this.valid = true
+      if ((this.type === 'login' && !this.username.isError && !this.password.isError) || (this.type === 'register' && !this.username.isError && !this.password.isError && !this.password2.isError)) this.valid = true
     },
     // 登陆注册
     handleLogin(e) {
@@ -106,10 +106,13 @@ export default {
         })
       }
       return false
-    },
-    showPwd() {}
+    }
+    // 查看密码
+    // showPwd() {
+
+    // }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .login-container{

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home clear">
     <!-- 左边 -->
     <div class="l_box">
       <!-- 关于我 -->
@@ -7,11 +7,11 @@
         <h2>关于我</h2>
         <ul>
           <i>
-            <img src="../assets/images/4.jpg" alt />
+            <img :src="aboutMe.avatar" alt />
           </i>
           <p>
             <b>书行天下</b>
-            一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
+            {{aboutMe.intro}}
           </p>
         </ul>
       </div>
@@ -238,10 +238,28 @@
 </template>
 
 <script>
+import { onMounted, reactive, toRefs } from 'vue'
+import { getAbout } from '@/api/about/about'
 export default {
-  name: "Home",
-  components: {}
-};
+  name: 'Home',
+  components: {},
+  setup() {
+    const data = reactive({
+      aboutMe: {}
+    })
+    onMounted(() => {
+      getAbout().then(res => {
+        if (res.code === 0) {
+          data.aboutMe = res.data[0]
+        }
+      })
+    })
+    const refData = toRefs(data)
+    return {
+      ...refData
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .about_me img {

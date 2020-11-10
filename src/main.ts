@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import "@/assets/css/base.css"
-import "@/assets/css/index.css"
-import "@/assets/css/m.css"
+// import "@/styles/base.scss"
+// import "@/styles/index.scss"
+// import "@/styles/m.scss"
 
 createApp(App).use(store).use(router).mount('#app')

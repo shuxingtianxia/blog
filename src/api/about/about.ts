@@ -9,7 +9,7 @@ export const getAbout = () => {
 }
 
 // 用户列表
-export const addAbout = (data) => {
+export const addAbout = (data: any) => {
   return axios.request({
     url: `/about/about_me`,
     method: 'post',
@@ -18,7 +18,7 @@ export const addAbout = (data) => {
 }
 
 // 关于我的详情
-export const aboutDetail = (params) => {
+export const aboutDetail = (params: any) => {
   return axios.request({
     url: `/about/about_one`,
     method: 'get',
@@ -27,7 +27,7 @@ export const aboutDetail = (params) => {
 }
 
 // 编辑关于我
-export const editAbout = (data) => {
+export const editAbout = (data: any) => {
   return axios.request({
     url: `/about/about_edit`,
     method: 'post',
@@ -36,7 +36,7 @@ export const editAbout = (data) => {
 }
 
 // 编辑关于我
-export const delAbout = (params) => {
+export const delAbout = (params: any) => {
   return axios.request({
     url: `/about/about_del`,
     method: 'get',

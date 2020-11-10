@@ -19,9 +19,9 @@ class httpRequest {
     private 私有的，只能在该对象（类）的内部才可以访问
     protected  受保护的，在类的内部或者他的子类中才能访问
   */
-  private options: { method: string; url: string }
-  // public options: { method: string; url: string }
-  private queue:any
+  // private options: { method: string; url: string }
+  options: { method: string; url: string }
+  queue:any
   constructor() {
     this.options = {
       method: '',
@@ -58,7 +58,7 @@ class httpRequest {
         if (data.code === 0) {
           return Promise.resolve(data)
         } else {
-          // return Message.error(data.msg)
+          return alert(data.msg)
         }
       } if (status === 401) {
         // Message.error('token已过期，请重新登录')
@@ -87,7 +87,6 @@ class httpRequest {
   }
   // 请求实例
   request(options = <axiosInfo>{}) {
-    
     let instance = this.create()
     if (BASE_NODE_BUILD === 'dev') {
       options.url = '/api' + options.url

@@ -1,4 +1,4 @@
-import axios from '@/unit/api.request.js'
+import axios from '@/unit/api.request'
 
 // 登录
 export const login = (data: any) => {

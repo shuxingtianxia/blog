@@ -92,9 +92,9 @@
 
 <script>
 export default {
-  name: "Home",
+  name: 'Home',
   components: {}
-};
+}
 </script>
 <style lang="scss" scoped>
 .about_me img {

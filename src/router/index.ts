@@ -4,12 +4,12 @@ import Header from '../components/common/Header.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/views/Login/index.vue")
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login/index.vue')
   },
   {
-    path: "",
+    path: '',
     redirect: 'home',
     component: Header,
     children: [{
@@ -23,48 +23,48 @@ const routes: Array<RouteRecordRaw> = [
     }]
   },
   {
-    path: "/",
+    path: '/',
     component: Header,
     children: [{
-        path: "aboutMe",
-        name: "AboutMe",
-        component: () => import("@/views/AboutMe.vue")
+      path: 'aboutMe',
+      name: 'AboutMe',
+      component: () => import('@/views/AboutMe.vue')
     }]
   },
   {
-    path: "/",
+    path: '/',
     component: Header,
     children: [{
-      path: "myPhoto",
-      name: "MyPhoto",
-      component: () => import("@/views/MyPhoto.vue")
+      path: 'myPhoto',
+      name: 'MyPhoto',
+      component: () => import('@/views/MyPhoto.vue')
     }]
   },
   {
-    path: "/",
+    path: '/',
     component: Header,
     children: [{
-      path: "myDiary",
-      name: "MyDiary",
-      component: () => import("@/views/MyDiary.vue")
+      path: 'myDiary',
+      name: 'MyDiary',
+      component: () => import('@/views/MyDiary.vue')
     }]
   },
   {
-    path: "/",
+    path: '/',
     component: Header,
     children: [{
-      path: "messages",
-      name: "Messages",
-      component: () => import("@/views/Messages.vue")
+      path: 'messages',
+      name: 'Messages',
+      component: () => import('@/views/Messages.vue')
     }]
   },
   {
-    path: "/",
+    path: '/',
     component: Header,
     children: [{
-      path: "contentArea",
-      name: "ContentArea",
-      component: () => import("@/views/ContentArea.vue")
+      path: 'contentArea',
+      name: 'ContentArea',
+      component: () => import('@/views/ContentArea.vue')
     }]
   }
 ]

@@ -5,7 +5,7 @@
       <div class="top">
         <div class="logo">
           <a href="/">
-            <img src="../../assets/images/logo.png" />
+            <img src="../../assets/logo.png" />
           </a>
         </div>
         <nav id="nav">
@@ -32,8 +32,7 @@
         </nav>
         <div class="login-box" v-if="true">
           <div class="login-text">
-            <span class="login">登录</span> / 
-            <span class="register">注册</span>
+            <span class="login">登录</span> / <span class="register">注册</span>
           </div>
           <i class="iconfont icon-denglu login-icon"></i>
         </div>
@@ -52,11 +51,11 @@
 <script type="text/javascript">
 export default {
   data() {
-    return {};
+    return {}
   },
   components: {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -67,6 +66,7 @@ export default {
 // }
 header {
   width: 100%;
+  margin-bottom: 10px;
   background: #fff;
 }
 .top {
