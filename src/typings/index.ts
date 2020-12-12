@@ -1,10 +1,12 @@
 interface ITodo {
-  id: number;
-  content: string;
-  status: TODO_STATUS
+  token: string,
+  userInfo: any
 }
 
 interface IState {
+  token: string;
+  isAuthenticated:boolean;
+  userInfo: any;
   list: ITodo[]
 }
 

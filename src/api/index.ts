@@ -9,7 +9,7 @@ export const login = (data: any) => {
   })
 }
 
-// 登录
+// 退出
 export const logout = () => {
   return axios.request({
     url: `/logout`,
@@ -17,7 +17,7 @@ export const logout = () => {
   })
 }
 
-// 登录
+// 注册
 export const register = (data: any) => {
   return axios.request({
     url: `/register`,

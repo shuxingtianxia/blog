@@ -42,9 +42,9 @@ class httpRequest {
   interceptors(instance: any) {
     // 添加请求拦截器
     instance.interceptors.request.use((config: { headers: { Authorization: string } }) => {
-      console.log(store.getters.token)
-      if (store.getters.token) {
-        config.headers.Authorization = store.getters.token // 携带token
+      console.log(localStorage.token)
+      if (localStorage.token) {
+        config.headers.Authorization = localStorage.token // 携带token
       }
       return config
     }, (error: any) => {
@@ -53,12 +53,12 @@ class httpRequest {
     // 添加响应拦截器
     instance.interceptors.response.use((res: { data: any; status: number }) => {
       const { data, status } = res
-      console.log(res)
       if (status === 200) {
         if (data.code === 0) {
           return Promise.resolve(data)
         } else {
-          return alert(data.msg)
+          alert(data.msg)
+          return Promise.reject(data)
         }
       } if (status === 401) {
         // Message.error('token已过期，请重新登录')
@@ -87,6 +87,7 @@ class httpRequest {
   }
   // 请求实例
   request(options = <axiosInfo>{}) {
+    // eslint-disable-next-line
     let instance = this.create()
     if (BASE_NODE_BUILD === 'dev') {
       options.url = '/api' + options.url
@@ -97,6 +98,12 @@ class httpRequest {
     options = Object.assign({}, options)
     this.queue[options.url] = instance
     return instance(options)
+  }
+}
+
+declare module 'axios' {
+  interface AxiosInstance {
+    (config: AxiosRequestConfig): Promise<any>
   }
 }
 

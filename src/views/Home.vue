@@ -124,180 +124,192 @@
     <!-- 右边 -->
     <div class="r_box">
       <ul>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
+        <li v-for="item in articleList" :key="item._id">
+          <a href="/" class="articleImg"><img :src="item.articleImgUrl" alt=""/></a>
           <h3>
             <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
+            <a href="/">{{item.articleName}}</a>
           </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
-        </li>
-        <li>
-          <i>
-            <a href="/"><img src="../assets/images/1.jpg" alt=""/></a>
-          </i>
-          <h3>
-            <b>【顶】</b>
-            <a href="/">个人博客从简不繁</a>
-          </h3>
-          <p>
-            十一月中旬开始，排名突然下降了，网站“个人博客”关键词排名从第一页第二名滑落到100页以后了，个人博客这个关键词百度已经搜不到了，仅有google、搜狗、360排
-          </p>
+          <div class="articleInfo">
+            <span>
+              <i class="iconfont icon-leimupinleifenleileibie"></i>
+              <i>{{item.articleCategory && item.articleCategory.title}}</i>
+            </span>
+            <span>
+              <i class="iconfont icon-zuozhe"></i>
+              <i>{{item.author}}</i>
+            </span>
+            <span>
+              <i class="iconfont icon-liulan"></i>
+              <i>{{item.views}}</i>
+            </span>
+            <span>
+              <i class="iconfont icon-pinglun8"></i>
+              <i>{{item.comment && item.comment.length}}</i>
+            </span>
+            <span>
+              <i class="iconfont icon-shijian"></i>
+              <i>{{item.time}}</i>
+            </span>
+          </div>
+          <p>{{item.articleIntro}}</p>
         </li>
       </ul>
+      <!-- 分页 -->
+      <div class="pages" v-if="page.pages > 1">
+        <span class="next" @click="prev">&lt;上一页</span>
+        <span class="active" v-for="item in page.pages" :key="item">{{item}}</span>
+        <span class="next" @click="next">下一页&gt;</span>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
-import { getAbout } from '@/api/about/about'
+import * as about from '@/api/about/about'
+import * as article from '@/api/article/article'
 export default {
   name: 'Home',
-  components: {},
   setup() {
     const data = reactive({
-      aboutMe: {}
+      aboutMe: {},
+      articleList: [],
+      form: {
+        page: 1,
+        limit: 10
+      },
+      page: {
+        pages: 0, // 总数
+        page: 1, // 单前页
+        limit: 10
+      }
     })
-    onMounted(() => {
-      getAbout().then(res => {
+    // 获取关于我的简介
+    const getAbout = () => {
+      about.getAbout().then(res => {
         if (res.code === 0) {
           data.aboutMe = res.data[0]
         }
       })
+    }
+    // 获取文章列表
+    const getArticle = () => {
+      article.getArticle(data.form).then(res => {
+        if (res.code === 0) {
+          data.articleList = res.data
+          data.page.pages = res.pages
+        }
+      })
+    }
+    // 上一页
+    const prev = () => {
+      data.form.page = data.form.page - 1
+      getArticle()
+    }
+    // 下一页
+    const next = () => {
+      data.form.page = data.form.page + 1
+      getArticle()
+    }
+    onMounted(() => {
+      getAbout()
+      getArticle()
     })
     const refData = toRefs(data)
     return {
-      ...refData
+      ...refData,
+      prev,
+      next
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.about_me img {
-  width: 100%;
-}
-.about_me p {
-  line-height: 24px;
-  font-size: 14px;
-}
-.about_me i {
-  width: 120px;
-  float: left;
-  clear: left;
-  margin-right: 10px;
-  height: 90px;
-  overflow: hidden;
+.about_me {
+  i{
+    display: flex;
+    align-items: center;
+    width: 120px;
+    float: left;
+    clear: left;
+    margin-right: 10px;
+    height: 120px;
+    overflow: hidden;
+    img{
+      width: 100%;
+    }
+  }
+  p{
+    line-height: 24px;
+    font-size: 14px;
+  }
 }
 .search {
   border: 1px solid #000;
   background: #000;
   border-radius: 0 5px 5px 0;
   position: relative;
+  input.input_submit {
+    border: 0;
+    background: 0;
+    color: #fff;
+    outline: none;
+    position: absolute;
+    top: 10px;
+    right: 8%;
+  }
+  input.input_text {
+     border: 0;
+    line-height: 36px;
+    height: 36px;
+    width: 72%;
+    padding-left: 10px;
+    outline: none;
+  }
 }
-.search input.input_submit {
-  border: 0;
-  background: 0;
-  color: #fff;
-  outline: none;
-  position: absolute;
-  top: 10px;
-  right: 8%;
+.r_box {
+  .articleInfo {
+    display: flex;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+    &>span {
+      margin-right: 10px;
+      &>i:first-child {
+        margin-right: 4px;
+        font-size: 12px;
+      }
+    }
+  }
 }
-.search input.input_text {
-  border: 0;
-  line-height: 36px;
-  height: 36px;
-  width: 72%;
-  padding-left: 10px;
-  outline: none;
+.pages {
+  padding: 0 25x 25px;
+  text-align: right;
+  font-size: 12px;
+  text-align: center;
+  span {
+    background: #fff;
+    color: #454545;
+    padding: 5px 8px;
+    border: none;
+    margin: 0 0 0 5px;
+    cursor: pointer;
+    &.active {
+      background: #f16e50;
+      color: #fff;
+    }
+    &:hover {
+      background: #f16e50;
+      color: #fff;
+    }
+  }
+  a {
+    background: #fff;
+    color: #454545;
+    padding: 5px 8px;
+    border: none;
+    margin: 0 0 0 5px;
+  }
 }
 </style>

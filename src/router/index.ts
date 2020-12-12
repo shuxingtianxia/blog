@@ -12,60 +12,38 @@ const routes: Array<RouteRecordRaw> = [
     path: '',
     redirect: 'home',
     component: Header,
-    children: [{
-      path: 'home',
-      name: 'Home',
-      meta: {
-        hideInMenu: true,
-        notCache: true
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/views/Home.vue')
       },
-      component: () => import('@/views/Home.vue')
-    }]
-  },
-  {
-    path: '/',
-    component: Header,
-    children: [{
-      path: 'aboutMe',
-      name: 'AboutMe',
-      component: () => import('@/views/AboutMe.vue')
-    }]
-  },
-  {
-    path: '/',
-    component: Header,
-    children: [{
-      path: 'myPhoto',
-      name: 'MyPhoto',
-      component: () => import('@/views/MyPhoto.vue')
-    }]
-  },
-  {
-    path: '/',
-    component: Header,
-    children: [{
-      path: 'myDiary',
-      name: 'MyDiary',
-      component: () => import('@/views/MyDiary.vue')
-    }]
-  },
-  {
-    path: '/',
-    component: Header,
-    children: [{
-      path: 'messages',
-      name: 'Messages',
-      component: () => import('@/views/Messages.vue')
-    }]
-  },
-  {
-    path: '/',
-    component: Header,
-    children: [{
-      path: 'contentArea',
-      name: 'ContentArea',
-      component: () => import('@/views/ContentArea.vue')
-    }]
+      {
+        path: 'aboutMe',
+        name: 'AboutMe',
+        component: () => import('@/views/AboutMe.vue')
+      },
+      {
+        path: 'myPhoto',
+        name: 'MyPhoto',
+        component: () => import('@/views/MyPhoto.vue')
+      },
+      {
+        path: 'myDiary',
+        name: 'MyDiary',
+        component: () => import('@/views/MyDiary.vue')
+      },
+      {
+        path: 'messages',
+        name: 'Messages',
+        component: () => import('@/views/Messages.vue')
+      },
+      {
+        path: 'contentArea',
+        name: 'ContentArea',
+        component: () => import('@/views/ContentArea.vue')
+      }
+    ]
   }
 ]
 

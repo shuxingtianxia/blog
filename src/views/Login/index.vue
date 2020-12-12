@@ -23,17 +23,22 @@
         </div>
         <button class="submit" @click="handleLogin">提交</button>
       </form>
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'Home' }">
         <p class="back-home">返回首页</p>
       </router-link>
     </div>
   </div>
 </template>
-<script>
-import { login } from '@/api/index'
+<script lang="ts">
+import { login, register } from '@/api/index'
+import { reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { SET_IS_AUTHENTICATED, SET_USER } from '@/store/mutation-types'
+import jwtDecode from 'jwt-decode'
 export default {
-  data() {
-    return {
+  setup() {
+    const data = reactive({
       type: 'login',
       form: {
         username: '',
@@ -53,64 +58,113 @@ export default {
         isError: true,
         text: ''
       }
-    }
-  },
-  methods: {
+    })
+    // 路由
+    const router = useRouter()
+    const store = useStore()
     // 切换
-    tab(type) {
-      this.type = type
-    },
+    const tab = (type: string): void => {
+      data.type = type
+    }
+
     // 校验表单信息
-    handleChange(type) {
-      const { username, password, password2 } = this.form
+    const handleChange = (type: string): void => {
+      const { username, password, password2 } = data.form
       if (type === 'username') {
         // 用户名正则，4到16位（字母，数字，下划线，减号）
         const uPattern = /^[a-zA-Z0-9_-]{4,16}$/
         if (!uPattern.test(username)) {
-          this.username.isError = true
-          this.username.text = '用户名只能为字母，数字，下划线，减号，4到16位'
+          data.username.isError = true
+          data.username.text = '用户名只能为字母，数字，下划线，减号，4到16位'
         } else {
-          this.username.isError = false
+          console.log('3212')
+          data.username.isError = false
         }
       }
       if (type === 'password') {
         // 密码正则，最少6位，包括至少1字母，1个数字
         const pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z | A-Z]).*$/
         if (!pPattern.test(password)) {
-          this.password.isError = true
-          this.password.text = '最少6位，包括至少1字母，1个数字'
+          data.password.isError = true
+          data.password.text = '最少6位，包括至少1字母，1个数字'
         } else {
-          this.password.isError = false
+          data.password.isError = false
         }
       }
       if (type === 'password2') {
         if (password !== password2) {
-          this.password2.isError = true
-          this.password2.text = '两次密码不一致'
+          data.password2.isError = true
+          data.password2.text = '两次密码不一致'
         } else {
-          this.password2.isError = false
+          data.password2.isError = false
         }
       }
-      if ((this.type === 'login' && !this.username.isError && !this.password.isError) || (this.type === 'register' && !this.username.isError && !this.password.isError && !this.password2.isError)) this.valid = true
-    },
+      if ((data.type === 'login' && !data.username.isError && !data.password.isError) || (data.type === 'register' && !data.username.isError && !data.password.isError && !data.password2.isError)) data.valid = true
+    }
+
+    // 判断是不是空的
+    const isEmpty = (value: any) => {
+      return (
+        value === undefined ||
+        value === null ||
+        (typeof value === 'object' && Object.keys(value).length === 0) ||
+        (typeof value === 'string' && value.trim().length === 0)
+      )
+    }
+
     // 登陆注册
-    handleLogin(e) {
+    const handleLogin = (e: { preventDefault: () => void }) => {
+      // 判断是否输入用户名和密码
+      if (!data.valid) {
+        const { username, password, password2 } = data.form
+        if (!username) {
+          data.username.isError = true
+          data.username.text = '请输入用户名'
+        }
+        if (!password) {
+          data.password.isError = true
+          data.password.text = '请输入密码'
+        }
+        if (data.type === 'register' && !password2) {
+          data.password2.isError = true
+          data.password2.text = '请再次输入密码'
+        }
+      }
       // 阻止页面刷新
       e.preventDefault()
-      console.log(this.valid)
-      if (this.valid) {
-        login(this.form).then(res => {
+      // console.log(data.valid)
+      console.log(store)
+      if (data.valid) {
+        const method = data.type === 'login' ? login : register
+        method(data.form).then(res => {
           if (res.code === 0) {
-            alert('登陆成功')
+            if (data.type === 'register') {
+              alert('注册成功请登录')
+              data.type = 'login'
+            } else {
+              alert('登录成功')
+              router.push({ name: 'Home' })
+              // 解析token
+              const decode = jwtDecode(res.token)
+              localStorage.setItem('token', res.token)
+              console.log('!isEmpty(decode)', res.token)
+              store.dispatch(SET_IS_AUTHENTICATED, !isEmpty(decode))
+              store.dispatch(SET_USER, decode)
+            }
           }
+        }).catch(err => {
+          console.log(err)
         })
       }
       return false
     }
-    // 查看密码
-    // showPwd() {
-
-    // }
+    const refData = toRefs(data)
+    return {
+      ...refData,
+      tab,
+      handleChange,
+      handleLogin
+    }
   }
 }
 </script>

@@ -1,4 +1,5 @@
 const path = require("path");
+let webpack = require('webpack')
 // 打包成压缩文件
 // const FileManagerPlugin = require('filemanager-webpack-plugin')
 
@@ -8,6 +9,16 @@ const resolve = dir => {
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/production-sub-path/" : "/",
+  configureWebpack: {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': {
+          NODE_ENV: 'development'
+        }
+      })
+    ],
+    devtool: 'source-map'
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set("@@", resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))

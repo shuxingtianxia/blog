@@ -43,6 +43,12 @@
     margin: 20px auto
   } */
 
+  #nav {
+    li {
+      padding-right: 25px;
+    }
+  }
+
   .picbox ul {
     width: 23%;
   }
@@ -63,6 +69,9 @@
     display: block;
     font-size: 25px;
   }
+  .userInfo{
+    display: none !important;
+  }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -81,7 +90,7 @@
     display: none;
   }
 
-  .mnav {
+  .mNav {
     display: block;
   }
 
@@ -125,6 +134,13 @@
     display: block;
     font-size: 25px;
   }
+  .userInfo{
+    display: none !important;
+  }
+
+  .articleInfo{
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 479px) {
@@ -136,17 +152,14 @@
 
   .logo {
     width: 100%;
-  }
-
-  .logo img {
-    margin: auto;
+    text-align: center;
   }
 
   nav {
     display: none;
   }
 
-  .mnav {
+  .mNav {
     display: block;
   }
 
@@ -206,5 +219,11 @@
   .login-icon{
     display: block;
     font-size: 25px;
+  }
+  .userInfo{
+    display: none !important;
+  }
+  .articleInfo{
+    display: none !important;
   }
 }
